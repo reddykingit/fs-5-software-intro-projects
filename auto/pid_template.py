@@ -43,9 +43,10 @@ def update(car: dict, throttle_perc: float, mass: float = 1000, max_throttle_for
 def calculate_desired_acceleration(car: dict, K_P: float, K_I: float = 0.0, K_D: float = 0.0) -> tuple[float, float]:
         #input: car["v"], car["desired_v"] (floats)
         #output: desired acceleration and error tuple(float, float)
-        error = car["desired_v"] - car["v"]
-        desired_acceleration = (K_P * error)
-
+        error = car["desired_v"] - car["v"] 
+        car["net_integral"] += error
+        desired_acceleration = (K_P*error) + (K_I*car["net_integral"]*car["dt"])
+       
         return (desired_acceleration, error)
 
 
