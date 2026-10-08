@@ -3,12 +3,24 @@ import matplotlib.animation as animation
 from dataclasses import dataclass
 import numpy as np
 
+
+
 @dataclass
 class State:
-    pass
+    def __init__(self, torque, ratio, radius_wheels, mass):
+        self.torque = torque
+        self.ratio = ratio
+        self.radius_wheels = radius_wheels
+        self.mass = mass
 
-def step (state:State) -> State:
-    pass
+    def accelrate():
+        
+
+
+def step(state:State) -> State:
+    accleration = (
+        state.torque * state.ratio) / state.rad_wheels
+    force = state.mass * accleration
 
 def animate (i):
     pass
